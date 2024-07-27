@@ -37,7 +37,7 @@ const Navbar = () => {
           {links.map((i) => (
             <Link
               // TODO: Underline animation on hover
-              className="hover:bg-stone-700 px-4 py-2 rounded transition"
+              className="nav-item py-1 rounded transition"
               to={i.path}
             >
               {i.text}
