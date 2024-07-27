@@ -33,11 +33,11 @@ const Navbar = () => {
             E-commerce
           </Link>
         </div>
-        <div className="flex gap-5 text-xl">
+        <div className="flex gap-5 text-xl h-full">
           {links.map((i) => (
             <Link
               // TODO: Underline animation on hover
-              className="nav-item py-1 rounded transition"
+              className="nav-item py-1 px-4 rounded transition"
               to={i.path}
             >
               {i.text}
