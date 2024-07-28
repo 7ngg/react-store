@@ -1,4 +1,5 @@
 import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SingIn";
 
 const routes = [
@@ -9,6 +10,10 @@ const routes = [
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ];
 

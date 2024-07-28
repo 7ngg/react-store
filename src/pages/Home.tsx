@@ -16,10 +16,12 @@ const Home = () => {
             <Button
               text="Button 1"
               className="hover:bg-black hover:text-white"
+              type={undefined}
             />
             <Button
               text="Button 2"
               className="bg-black text-white hover:bg-transparent hover:text-black"
+              type={undefined}
             />
           </div>
         </div>

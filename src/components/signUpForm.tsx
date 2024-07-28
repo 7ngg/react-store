@@ -2,31 +2,31 @@ import { Link } from "react-router-dom";
 import Input from "./input";
 import Button from "./button";
 
-const SignInForm = () => {
+const SignUpForm = () => {
   return (
     <form className="h-[500px] shadow rounded bg-white border border-black font-bold flex gap-2">
       <div className="flex flex-col justify-between p-3">
-        <h1 className="text-2xl mb-4">Sign In</h1>
+        <h1 className="text-2xl mb-4">Sign Up</h1>
         <div className="flex flex-col gap-2">
           <div>
             <h3>Username</h3>
             <Input />
           </div>
           <div>
+            <h3>Email</h3>
+            <Input />
+          </div>
+          <div>
             <h3>Password</h3>
             <Input />
           </div>
-        </div>
-        <div className="font-normal mt-2">
-          <p className="flex flex-col">
-            Don't have an account yet?
-            <Link to="/signup" className="underline">
-              Sign Up
-            </Link>
-          </p>
+          <div>
+            <h3>Confirm Parssword</h3>
+            <Input />
+          </div>
         </div>
         <div className="self-center">
-          <Button text="Sign in" type="submit" />
+          <Button text="Sign up" type="submit" />
         </div>
       </div>
       <div>
@@ -40,4 +40,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
