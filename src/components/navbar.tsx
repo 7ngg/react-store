@@ -24,7 +24,7 @@ const links = [
 const Navbar = () => {
   return (
     <>
-      <div className="h-[50px] bg-stone-900 text-white flex fixed w-full items-center justify-evenly">
+      <div className="h-[50px] bg-stone-900 text-white flex sticky w-full items-center justify-evenly">
         <div className="flex gap-1">
           <img
             className="h-8"

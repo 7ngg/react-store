@@ -1,6 +1,4 @@
 import Button from "../components/button";
-import Navbar from "../components/navbar";
-import { Carousel } from "react-responsive-carousel";
 
 const Home = () => {
   return (

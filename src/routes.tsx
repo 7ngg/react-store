@@ -4,6 +4,7 @@ import SignIn from "./pages/SingIn";
 import Error from "./pages/Error";
 import About from "./pages/About";
 import App from "./App";
+import News from "./pages/News";
 
 const routes = [
   {
@@ -15,6 +16,7 @@ const routes = [
       { path: "/signin", element: <SignIn /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/about", element: <About /> },
+      { path: "/news", element: <News /> },
     ],
   },
 ];

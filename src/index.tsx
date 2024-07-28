@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import "./styles/navbar.min.css";
@@ -8,7 +7,6 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import routes from "./routes";
-import Navbar from "./components/navbar";
 
 const router = createBrowserRouter(routes);
 
