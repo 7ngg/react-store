@@ -5,9 +5,6 @@ import { Carousel } from "react-responsive-carousel";
 const Home = () => {
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
       <main>
         <div className="h-[700px] bg-stone-300 flex flex-col items-center justify-center gap-2">
           <h1 className="font-bold text-6xl">Title</h1>
