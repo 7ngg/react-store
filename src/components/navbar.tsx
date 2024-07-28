@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import ProfileIcon from "./icons/profileIcon";
+import SettingsIcon from "./icons/settingsIcon";
 
 const links = [
   {
@@ -34,9 +36,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex gap-5 text-xl h-full">
-          {links.map((i) => (
+          {links.map((i, index) => (
             <Link
-              // TODO: Underline animation on hover
+              key={index}
               className="nav-item py-1 px-4 rounded transition"
               to={i.path}
             >
@@ -46,17 +48,11 @@ const Navbar = () => {
         </div>
         <div className="flex gap-3">
           {/*TODO: Proper svg icons*/}
-          <img
-            className="h-8"
-            src="https://i.imgur.com/PNwk7qd.png"
-            alt="settings-icon"
-          />
+          <Link to="">
+            <SettingsIcon color="white" />
+          </Link>
           <Link to="/signin">
-            <img
-              className="h-8 bg-blue"
-              src="https://i.imgur.com/tgQ8cgF.png"
-              alt="user-icon"
-            />
+            <ProfileIcon color="white" />
           </Link>
         </div>
       </div>

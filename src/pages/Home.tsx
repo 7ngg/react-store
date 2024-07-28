@@ -13,7 +13,10 @@ const Home = () => {
           <h1 className="font-bold text-6xl">Title</h1>
           <h2 className="text-2xl">Subtitle</h2>
           <div className="flex gap-2">
-            <Button text="Button 1" className="" />
+            <Button
+              text="Button 1"
+              className="hover:bg-black hover:text-white"
+            />
             <Button
               text="Button 2"
               className="bg-black text-white hover:bg-transparent hover:text-black"
