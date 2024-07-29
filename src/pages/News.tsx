@@ -3,10 +3,19 @@ import { useQuery } from "react-query";
 import { fetchNews } from "../api/news";
 
 const News = () => {
-  const { data: news, isLoading } = useQuery({
+  const {
+    data: news,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryFn: fetchNews,
     queryKey: ["news"],
   });
+
+  if (isError) {
+    console.log("Error occurred while fetching news: ", error);
+  }
 
   return (
     <div className="mt-10 flex flex-col items-center gap-10">
