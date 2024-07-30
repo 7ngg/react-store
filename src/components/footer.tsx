@@ -43,7 +43,7 @@ const Footer = () => {
       <section className="flex flex-col gap-3 footer-item">
         <h6 className="text-2xl font-bold text-white">Follow us</h6>
         <div className="social-icons flex gap-3">
-          <a
+        1  <a
             href="https://twitter.com/"
             target="_blank"
             rel="noopener noreferrer"

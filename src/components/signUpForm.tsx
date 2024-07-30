@@ -10,19 +10,19 @@ const SignUpForm = () => {
         <div className="flex flex-col gap-2">
           <div>
             <h3>Username</h3>
-            <Input type="text"/>
+            <Input type="text" />
           </div>
           <div>
             <h3>Email</h3>
-            <Input type="email"/>
+            <Input type="email" />
           </div>
           <div>
             <h3>Password</h3>
-            <Input type="password"/>
+            <Input type="password" />
           </div>
           <div>
             <h3>Confirm Parssword</h3>
-            <Input type="password"/>
+            <Input type="password" />
           </div>
         </div>
         <div className="self-center">

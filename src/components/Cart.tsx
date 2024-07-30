@@ -1,45 +1,27 @@
-import { useEffect, useState } from "react";
-import { Product } from "../Entities/product";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-
-// function remove(arr: Product[], item: Product) {
-//   const result: Product[] = [];
-//   let temp: Product;
-
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i].id !== item.id) {
-//       result.push(arr[i]);
-//     } else {
-//       temp = arr[i];
-//     }
-//   }
-
-//   result.push(temp);
-// }
+import { Product } from "../Entities/product";
 
 const Cart = () => {
-  // const [items, setItems] = useState<Product[]>([]);
   const queryClient = useQueryClient();
-  const fetchCart = () => {
+
+  const fetchCart = (): Product[] => {
     const data = localStorage.getItem("cart");
-
-    if (data) {
-      return JSON.parse(data) as Product[];
-    }
-
-    return [];
+    return data ? (JSON.parse(data) as Product[]) : [];
   };
 
-  const remove = (index: number) => {
-    items?.splice(index, 1);
-  };
-
-  const { data: items } = useQuery({
+  const { data: items = [] } = useQuery<Product[]>({
     queryFn: fetchCart,
     queryKey: "items",
   });
 
-  const { mutate: mutate } = useMutation({
+  const remove = async (index: number): Promise<Product[]> => {
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(updatedItems));
+    return updatedItems;
+  };
+
+  const { mutateAsync: removeItem } = useMutation({
     mutationFn: remove,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["items"] });
@@ -62,8 +44,8 @@ const Cart = () => {
                 <p className="before:content-['$']">{p.price}</p>
                 <button
                   className="rounded w-6 h-6 hover:bg-stone-900 hover:text-white"
-                  onClick={(e) => {
-                    items.splice(index, 1);
+                  onClick={() => {
+                    removeItem(index);
                   }}
                 >
                   &times;
@@ -72,10 +54,14 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="mt-5 flex px-2">
-          <h1 className="font-bold">Total:</h1>
-          <p>{}</p>
-        </div>
+        {items.length > 0 && (
+          <div className="mt-5 flex px-2 justify-between">
+            <h1 className="font-bold">Total:</h1>
+            <p>
+              {items.reduce((total, item) => total + item.price, 0).toFixed(2)}
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
