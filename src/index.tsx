@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import "./styles/navbar.min.css";
+import "./styles/footer.min.css";
 import {
   BrowserRouter,
   RouterProvider,

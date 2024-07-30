@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 
 const App = () => {
@@ -10,6 +11,9 @@ const App = () => {
       <main className="mt-[50px]">
         <Outlet />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
