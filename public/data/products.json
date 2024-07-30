@@ -1,0 +1,63 @@
+[
+  {
+    "id": "2",
+    "name": "Laptop",
+    "price": 1199.99,
+    "imgUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  },
+  {
+    "id": "3",
+    "name": "Headphones",
+    "price": 199.99,
+    "imgUrl": "https://images.unsplash.com/photo-1546435770-a3e426bf472b"
+  },
+  {
+    "id": "6",
+    "name": "Tablet",
+    "price": 329.99,
+    "imgUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "id": "7",
+    "name": "Monitor",
+    "price": 179.99,
+    "imgUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "id": "8",
+    "name": "Keyboard",
+    "price": 89.99,
+    "imgUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  },
+  {
+    "id": "9",
+    "name": "Mouse",
+    "price": 49.99,
+    "imgUrl": "https://images.unsplash.com/photo-1546435770-a3e426bf472b"
+  },
+  {
+    "id": "12",
+    "name": "Speakers",
+    "price": 79.99,
+    "imgUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "id": "13",
+    "name": "Router",
+    "price": 59.99,
+    "imgUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  },
+  {
+    "id": "14",
+    "name": "External Hard Drive",
+    "price": 89.99,
+    "imgUrl": "https://images.unsplash.com/photo-1546435770-a3e426bf472b"
+  },
+  {
+    "id": "15",
+    "name": "USB Flash Drive",
+    "price": 29.99,
+    "imgUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  }
+]
+
