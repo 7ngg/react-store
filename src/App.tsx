@@ -4,10 +4,10 @@ import Navbar from "./components/navbar";
 const App = () => {
   return (
     <>
-      <header>
+      <header className="relative z-50">
         <Navbar />
       </header>
-      <main>
+      <main className="mt-[50px]">
         <Outlet />
       </main>
     </>

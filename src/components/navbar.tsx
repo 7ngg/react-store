@@ -23,8 +23,8 @@ const links = [
 
 const Navbar = () => {
   return (
-    <>
-      <div className="h-[50px] bg-stone-900 text-white flex sticky w-full items-center justify-evenly">
+    <div className="relative">
+      <div className="fixed top-0 h-[50px] bg-stone-900 text-white flex w-full items-center justify-evenly z-50">
         <div className="flex gap-1">
           <img
             className="h-8"
@@ -47,7 +47,6 @@ const Navbar = () => {
           ))}
         </div>
         <div className="flex gap-3">
-          {/*TODO: Proper svg icons*/}
           <Link to="">
             <SettingsIcon color="white" />
           </Link>
@@ -56,7 +55,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
