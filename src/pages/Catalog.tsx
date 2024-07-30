@@ -56,7 +56,7 @@ const Catalog = () => {
       <section className="w-full px-5">
         <div className="">
           <div className="flex justify-between">
-            <Input placeholder="Search" className="w-[300px]" />
+            <Input placeholder="Search" className="w-[300px]" type="text" />
             <div className="flex gap-3">
               {sorting.map((i, index) => (
                 <button

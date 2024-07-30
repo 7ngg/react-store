@@ -10,11 +10,11 @@ const SignInForm = () => {
         <div className="flex flex-col gap-2">
           <div>
             <h3>Username</h3>
-            <Input />
+            <Input type="text"/>
           </div>
           <div>
             <h3>Password</h3>
-            <Input />
+            <Input type="password"/>
           </div>
         </div>
         <div className="font-normal mt-2">
