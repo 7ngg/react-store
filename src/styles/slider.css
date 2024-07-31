@@ -1,12 +1,13 @@
 .slick-track {
     display: flex !important;
-    align-items: center;
+    padding: 5px;
+    height: 500px;
 }
 
 .slick-slide {
-    margin-top: 10px;
-    min-height: 400px;
-    object-fit: cover;
+    padding-top: 20px;
+
+    
 }
 
 .slick-slide img {

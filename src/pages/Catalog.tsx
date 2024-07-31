@@ -46,8 +46,8 @@ const Catalog = () => {
 
   const clearSearch = () => {
     setSearch("");
-    setFilteredProducts(products || [])
-  }
+    setFilteredProducts(products || []);
+  };
 
   return (
     <div className="w-11/12 flex justify-between self-center my-10">
@@ -75,7 +75,7 @@ const Catalog = () => {
                 <button
                   onClick={() => sortingHandler(index)}
                   key={index}
-                  className={`${index === currentSorting ? "bg-stone-900 text-white" : ""} outline-none px-4 py-2 border border-black rounded hover:bg-stone-900 hover:text-white duration-150`}
+                  className={`${index === currentSorting ? "bg-stone-900 text-white before:content-['✔'] before:pr-2" : ""} outline-none px-4 py-2 border border-black rounded hover:bg-stone-900 hover:text-white duration-150`}
                 >
                   {i}
                 </button>

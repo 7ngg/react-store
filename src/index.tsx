@@ -4,6 +4,7 @@ import "./styles/navbar.min.css";
 import "./styles/footer.min.css";
 import "./styles/scrollbar.css";
 import "./styles/cart.min.css";
+import "./styles/sidebar.min.css";
 import {
   RouterProvider,
   createBrowserRouter,

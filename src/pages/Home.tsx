@@ -6,7 +6,7 @@ import { Product } from "../Entities/product";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../styles/slider.css"
+import "../styles/slider.css";
 
 const Home = () => {
   const [carouselData, setCarouselData] = useState<Product[]>([]);
@@ -27,6 +27,8 @@ const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     adaptiveHeight: true,
+    centerMode: true,
+    focusOnSelect: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -77,7 +79,7 @@ const Home = () => {
         <div className="mb-20 w-11/12">
           <Slider {...settings}>
             {carouselData.map((i) => (
-              <ItemCard item={i} />
+              <ItemCard key={i.id} item={i} />
             ))}
           </Slider>
         </div>
