@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Product } from "../Entities/product";
+import Button from "./button";
 import TrashIcon from "./icons/trashIcon";
 
 const Cart = () => {
@@ -10,7 +11,7 @@ const Cart = () => {
     return data ? (JSON.parse(data) as Product[]) : [];
   };
 
-  const { data: items = [] } = useQuery<Product[]>({
+  const { data: items = [], refetch } = useQuery<Product[]>({
     queryFn: fetchCart,
     queryKey: "items",
   });
@@ -29,6 +30,11 @@ const Cart = () => {
     },
   });
 
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    refetch();
+  };
+
   return (
     <div className="h-[400px] flex flex-col justify-between">
       {items.length <= 0 && (
@@ -38,10 +44,7 @@ const Cart = () => {
       )}
       <div className="flex flex-col gap-2 overflow-scroll overflow-x-hidden">
         {items.map((p, index) => (
-          <div
-            key={index}
-            className="cart-item"
-          >
+          <div key={index} className="cart-item">
             <h1>{p.name}</h1>
             <div className="flex items-center gap-4">
               <p className="before:content-['$']">{p.price}</p>
@@ -58,11 +61,19 @@ const Cart = () => {
         ))}
       </div>
       {items.length > 0 && (
-        <div className="mt-5 flex px-2 justify-between">
-          <h1 className="font-bold">Total:</h1>
-          <p className="before:content-['$']">
-            {items.reduce((total, item) => total + item.price, 0).toFixed(2)}
-          </p>
+        <div className="flex flex-col gap-4">
+          <div className="mt-5 flex px-2 justify-between">
+            <h1 className="font-bold">Total:</h1>
+            <p className="before:content-['$']">
+              {items.reduce((total, item) => total + item.price, 0).toFixed(2)}
+            </p>
+          </div>
+          <Button
+            text="Proceed to checkout"
+            type={undefined}
+            className="w-full hover:bg-stone-900 hover:text-white duration-200"
+            onClick={clearCart}
+          />
         </div>
       )}
     </div>
