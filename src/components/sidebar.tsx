@@ -1,0 +1,36 @@
+import React from "react";
+import Checkbox from "./checkbox"
+
+const Sidebar = () => {
+  return (
+    <aside className="h-[700px] sticky w-1/6 min-h-5/6 p-2 border border-stone-400 rounded shadow flex flex-col gap-3">
+      <div>
+        <h1 className="mb-4">Keywords</h1>
+        <Checkbox label="Label" description="Description" />
+        <Checkbox label="Label" description="Description" />
+        <Checkbox label="Label" description="Description" />
+      </div>
+      <div>
+        <div className="flex justify-between">
+          <p>Label</p>
+          <p className="before:content-['$']">0-100</p>
+        </div>
+        <input type="range" className="w-full outline-none" />
+      </div>
+      <div>
+        <h1 className="mb-4">Color</h1>
+        <Checkbox label="Label" />
+        <Checkbox label="Label" />
+        <Checkbox label="Label" />
+      </div>
+      <div>
+        <h1 className="mb-4">Size</h1>
+        <Checkbox label="Label" />
+        <Checkbox label="Label" />
+        <Checkbox label="Label" />
+      </div>
+    </aside>
+  );
+};
+
+export default Sidebar;

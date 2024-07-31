@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchProducts } from "../api/store";
 import Checkbox from "../components/checkbox";
 import Input from "../components/input";
 import ItemCard from "../components/itemCard";
+import Sidebar from "../components/sidebar";
+import { Product } from "../Entities/product";
 import { Sorting } from "../Entities/sorting";
 
 const sorting = ["New", "Price ascending", "Price descending", "Rating"];
 
 const Catalog = () => {
   const [currentSorting, setCurrentSorting] = useState<Sorting>(Sorting.NEW);
+  const [search, setSearch] = useState<string>();
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>();
 
   const {
     data: products,
@@ -20,43 +24,38 @@ const Catalog = () => {
     queryKey: ["products"],
   });
 
+  useEffect(() => {
+    if (search) {
+      setFilteredProducts(
+        products?.filter((p) =>
+          p.name.toLowerCase().includes(search.toLowerCase()),
+        ) || [],
+      );
+    } else {
+      setFilteredProducts(products || []);
+    }
+  }, [search, products]);
+
   const sortingHandler = (s: number) => {
     setCurrentSorting(s);
   };
 
+  const seacrhHandler = (e: any) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="w-11/12 flex justify-between self-center my-10">
-      <aside className="h-[700px] sticky w-1/6 min-h-5/6 p-2 border border-stone-400 rounded shadow flex flex-col gap-3">
-        <div>
-          <h1 className="mb-4">Keywords</h1>
-          <Checkbox label="Label" description="Description" />
-          <Checkbox label="Label" description="Description" />
-          <Checkbox label="Label" description="Description" />
-        </div>
-        <div>
-          <div className="flex justify-between">
-            <p>Label</p>
-            <p className="before:content-['$']">0-100</p>
-          </div>
-          <input type="range" className="w-full outline-none" />
-        </div>
-        <div>
-          <h1 className="mb-4">Color</h1>
-          <Checkbox label="Label" />
-          <Checkbox label="Label" />
-          <Checkbox label="Label" />
-        </div>
-        <div>
-          <h1 className="mb-4">Size</h1>
-          <Checkbox label="Label" />
-          <Checkbox label="Label" />
-          <Checkbox label="Label" />
-        </div>
-      </aside>
+      <Sidebar />
       <section className="w-full px-5">
         <div className="">
           <div className="flex justify-between">
-            <Input placeholder="Search" className="w-[300px]" type="text" />
+            <Input
+              placeholder="Search"
+              onChange={seacrhHandler}
+              className="w-[300px]"
+              type="text"
+            />
             <div className="flex gap-3">
               {sorting.map((i, index) => (
                 <button
@@ -71,7 +70,7 @@ const Catalog = () => {
           </div>
         </div>
         <div className="mt-10 flex flex-wrap gap-3">
-          {products?.map((p) => <ItemCard key={p.id} item={p} />)}
+          {filteredProducts?.map((p) => <ItemCard key={p.id} item={p} />)}
         </div>
       </section>
     </div>
