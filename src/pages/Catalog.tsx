@@ -44,18 +44,32 @@ const Catalog = () => {
     setSearch(e.target.value);
   };
 
+  const clearSearch = () => {
+    setSearch("");
+    setFilteredProducts(products || [])
+  }
+
   return (
     <div className="w-11/12 flex justify-between self-center my-10">
       <Sidebar />
       <section className="w-full px-5">
         <div className="">
           <div className="flex justify-between">
-            <Input
-              placeholder="Search"
-              onChange={seacrhHandler}
-              className="w-[300px]"
-              type="text"
-            />
+            <div className="relative w-[300px] flex items-center">
+              <Input
+                placeholder="Search"
+                onChange={seacrhHandler}
+                className="w-full pr-6"
+                type="text"
+                value={search}
+              />
+              <button
+                className="absolute right-2 text-xl outline-none"
+                onClick={clearSearch}
+              >
+                &times;
+              </button>
+            </div>
             <div className="flex gap-3">
               {sorting.map((i, index) => (
                 <button
