@@ -55,7 +55,7 @@ const Catalog = () => {
       <section className="w-full px-5">
         <div className="">
           <div className="flex justify-between">
-            <div className="relative w-[300px] flex items-center">
+            <div className="container relative w-[300px] flex items-center">
               <Input
                 placeholder="Search"
                 onChange={seacrhHandler}

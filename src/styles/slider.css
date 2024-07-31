@@ -1,0 +1,14 @@
+.slick-track {
+    display: flex !important;
+    align-items: center;
+}
+
+.slick-slide {
+    margin-top: 10px;
+    min-height: 400px;
+    object-fit: cover;
+}
+
+.slick-slide img {
+    object-fit: cover;
+}
