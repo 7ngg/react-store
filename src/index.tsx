@@ -9,15 +9,18 @@ import {
 } from "react-router-dom";
 import routes from "./routes";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ModalState } from "./contexts/modalContext";
 
 const router = createBrowserRouter(routes);
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 root.render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-  </QueryClientProvider>
+    <ModalState>
+      <RouterProvider router={router} />
+    </ModalState>
+  </QueryClientProvider>,
 );

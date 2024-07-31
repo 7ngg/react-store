@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import ProfileIcon from "./icons/profileIcon";
 import SettingsIcon from "./icons/settingsIcon";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Cart from "./Cart";
+import { ModalContext } from "../contexts/modalContext";
+import Modal from "./modal";
 
 const links = [
   {
@@ -24,7 +26,7 @@ const links = [
 ];
 
 const Navbar = () => {
-  const [isCartOpened, setIsCartOpened] = useState<boolean>(false);
+  const { modal, open, close, toggle } = useContext(ModalContext);
 
   return (
     <>
@@ -58,17 +60,21 @@ const Navbar = () => {
             <Link to="/signin">
               <ProfileIcon color="white" />
             </Link>
-            <a className="h-8" onClick={() => setIsCartOpened(!isCartOpened)}>
+            <button className="h-8" onClick={toggle}>
               <img
                 className="h-full w-full cursor-pointer"
                 src="https://i.ibb.co/SKt9XVj/icons8-shopping-cart-64.png"
                 alt="cart-img"
               />
-            </a>
+            </button>
           </div>
         </div>
       </div>
-      {isCartOpened && <Cart />}
+      {modal && (
+        <Modal onClose={close} title="Cart">
+          <Cart />
+        </Modal>
+      )}
     </>
   );
 };
