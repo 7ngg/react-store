@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Product } from "../Entities/product";
+import TrashIcon from "./icons/trashIcon";
 
 const Cart = () => {
   const queryClient = useQueryClient();
@@ -29,23 +30,28 @@ const Cart = () => {
   });
 
   return (
-    <>
-      <div className="flex flex-col gap-2">
+    <div className="h-[400px] flex flex-col justify-between">
+      {items.length <= 0 && (
+        <div>
+          <h1>Your cart is empty</h1>
+        </div>
+      )}
+      <div className="flex flex-col gap-2 overflow-scroll overflow-x-hidden">
         {items.map((p, index) => (
           <div
             key={index}
-            className="flex items-center justify-between h-8 border px-2"
+            className="cart-item"
           >
             <h1>{p.name}</h1>
             <div className="flex items-center gap-4">
               <p className="before:content-['$']">{p.price}</p>
               <button
-                className="rounded w-6 h-6 hover:bg-stone-900 hover:text-white"
+                className="outline-none"
                 onClick={() => {
                   removeItem(index);
                 }}
               >
-                &times;
+                <TrashIcon color="black" />
               </button>
             </div>
           </div>
@@ -54,12 +60,12 @@ const Cart = () => {
       {items.length > 0 && (
         <div className="mt-5 flex px-2 justify-between">
           <h1 className="font-bold">Total:</h1>
-          <p>
+          <p className="before:content-['$']">
             {items.reduce((total, item) => total + item.price, 0).toFixed(2)}
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

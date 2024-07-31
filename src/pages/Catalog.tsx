@@ -25,7 +25,7 @@ const Catalog = () => {
   };
 
   return (
-    <div className="w-11/12 flex justify-between self-center mt-10">
+    <div className="w-11/12 flex justify-between self-center my-10">
       <aside className="h-[700px] sticky w-1/6 min-h-5/6 p-2 border border-stone-400 rounded shadow flex flex-col gap-3">
         <div>
           <h1 className="mb-4">Keywords</h1>

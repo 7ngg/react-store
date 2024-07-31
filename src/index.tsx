@@ -2,8 +2,9 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import "./styles/navbar.min.css";
 import "./styles/footer.min.css";
+import "./styles/scrollbar.css";
+import "./styles/cart.min.css";
 import {
-  BrowserRouter,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
