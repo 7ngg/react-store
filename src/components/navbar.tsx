@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="fixed">
         <div className="fixed top-0 h-[50px] bg-stone-900 text-white flex w-full items-center justify-evenly z-50">
           <div className="flex gap-1">
             <img

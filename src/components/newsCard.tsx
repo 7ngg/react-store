@@ -8,7 +8,7 @@ const NewsCard = ({ data }: NewsCardProps) => {
   return (
     <div
       key={data.id}
-      className="container grid grid-cols-2 w-9/12 gap-4 text-wrap p-5 border bg-white border-black rounded"
+      className="news-card container grid grid-cols-2 w-9/12 gap-4 text-wrap p-5 border bg-white border-black rounded"
     >
       <div className="min-w-[300px] max-w-[700px] max-h-[400px]">
         <img

@@ -54,7 +54,7 @@ const Catalog = () => {
       <Sidebar />
       <section className="w-full px-5">
         <div className="">
-          <div className="flex justify-between">
+          <div className="flex justify-between catalog-header">
             <div className="container relative w-[300px] flex items-center">
               <Input
                 placeholder="Search"
@@ -70,7 +70,7 @@ const Catalog = () => {
                 &times;
               </button>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 catalog-sorting">
               {sorting.map((i, index) => (
                 <button
                   onClick={() => sortingHandler(index)}

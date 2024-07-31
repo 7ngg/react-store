@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/slider.css";
 
+import titleVid from "../assets/title_vid.mp4";
+
 const Home = () => {
   const [carouselData, setCarouselData] = useState<Product[]>([]);
 
@@ -27,40 +29,43 @@ const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     adaptiveHeight: true,
-    centerMode: true,
-    focusOnSelect: true,
+    centerMode: true, // Уберите центрирование для мобильных устройств, если необходимо
+    focusOnSelect: false, // Уберите фокусировку на селект, если необходимо
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1780,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1460,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 1160,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 780,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
   };
-
   return (
     <>
-      <main className="flex flex-col overflow-y-hidden overflow-x-hidden items-center">
-        <div className="h-[700px] bg-stone-300 flex flex-col items-center justify-center gap-2">
+      <main className="flex flex-col overflow-y-hidden overflow-x-hidden items-center relative">
+        <video autoPlay loop muted>
+          {/*<source src="https://videos.pexels.com/video-files/26977720/12041412_1920_1080_25fps.mp4" type="video/mp4"/>*/}
+          <source src={titleVid} type="video/mp4" />
+        </video>
+        <div className="text-white h-[350px] w-[400px] rounded backdrop-blur bg-slate-950/50 flex flex-col items-center justify-center gap-2 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-[180%]">
           <h1 className="font-bold text-6xl">Title</h1>
           <h2 className="text-2xl">Subtitle</h2>
           <div className="flex gap-2">

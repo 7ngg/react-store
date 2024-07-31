@@ -11,7 +11,7 @@ const App = () => {
       <main className="mt-[50px]">
         <Outlet />
       </main>
-      <footer>
+      <footer className="relative z-50">
         <Footer />
       </footer>
     </>
