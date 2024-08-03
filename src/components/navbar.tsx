@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import Cart from "./Cart";
 import { ModalContext } from "../contexts/modalContext";
 import Modal from "./modal";
+import { useAppSelector } from "../hooks";
 
 const links = [
   {
@@ -27,6 +28,7 @@ const links = [
 
 const Navbar = () => {
   const { modal, open, close, toggle } = useContext(ModalContext);
+  const items = useAppSelector(state => state.cart.list)
 
   return (
     <>
@@ -60,7 +62,10 @@ const Navbar = () => {
             <Link to="/signin">
               <ProfileIcon color="white" />
             </Link>
-            <button className="h-8" onClick={toggle}>
+            <button className="h-8 relative" onClick={toggle}>
+              <div className="absolute -right-1 top-0 bg-red-500 rounded-full px-1 text-xs">
+                {items.length > 99 ? "99+" : items.length}
+              </div>
               <img
                 className="h-full w-full cursor-pointer"
                 src="https://i.ibb.co/SKt9XVj/icons8-shopping-cart-64.png"

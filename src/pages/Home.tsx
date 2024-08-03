@@ -56,11 +56,11 @@ const Home = () => {
       },
     ],
   };
+
   return (
     <>
       <main className="flex flex-col overflow-y-hidden overflow-x-hidden items-center relative">
         <video autoPlay loop muted>
-          {/*<source src="https://videos.pexels.com/video-files/26977720/12041412_1920_1080_25fps.mp4" type="video/mp4"/>*/}
           <source src={titleVid} type="video/mp4" />
         </video>
         <div className="text-white h-[350px] w-[400px] rounded backdrop-blur bg-slate-950/50 flex flex-col items-center justify-center gap-2 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-[180%]">

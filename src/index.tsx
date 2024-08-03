@@ -6,13 +6,12 @@ import "./styles/scrollbar.css";
 import "./styles/cart.min.css";
 import "./styles/sidebar.min.css";
 import "./styles/animations.css";
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import routes from "./routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ModalState } from "./contexts/modalContext";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const router = createBrowserRouter(routes);
 const queryClient = new QueryClient();
@@ -23,7 +22,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <QueryClientProvider client={queryClient}>
     <ModalState>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ModalState>
   </QueryClientProvider>,
 );

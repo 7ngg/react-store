@@ -1,39 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Product } from "../Entities/product";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { clear, removeItem } from "../store/slices/cartSlice";
 import Button from "./button";
 import TrashIcon from "./icons/trashIcon";
 
 const Cart = () => {
-  const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
-  const fetchCart = (): Product[] => {
-    const data = localStorage.getItem("cart");
-    return data ? (JSON.parse(data) as Product[]) : [];
-  };
-
-  const { data: items = [], refetch } = useQuery<Product[]>({
-    queryFn: fetchCart,
-    queryKey: "items",
-  });
-
-  const remove = async (index: number): Promise<Product[]> => {
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(updatedItems));
-    return updatedItems;
-  };
-
-  const { mutateAsync: removeItem } = useMutation({
-    mutationFn: remove,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["items"] });
-    },
-  });
-
-  const clearCart = () => {
-    localStorage.removeItem("cart");
-    refetch();
-  };
+  const items = useAppSelector((state) => state.cart.list);
 
   return (
     <div className="h-[400px] flex flex-col justify-between">
@@ -44,15 +19,13 @@ const Cart = () => {
       )}
       <div className="flex flex-col gap-2 overflow-scroll overflow-x-hidden">
         {items.map((p, index) => (
-          <div key={index} className="cart-item">
+          <div key={p.id} className="cart-item">
             <h1>{p.name}</h1>
             <div className="flex items-center gap-4">
               <p className="before:content-['$']">{p.price}</p>
               <button
                 className="outline-none"
-                onClick={() => {
-                  removeItem(index);
-                }}
+                onClick={() => dispatch(removeItem(index))}
               >
                 <TrashIcon color="black" />
               </button>
@@ -72,7 +45,7 @@ const Cart = () => {
             text="Proceed to checkout"
             type={undefined}
             className="w-full hover:bg-stone-900 hover:text-white duration-200"
-            onClick={clearCart}
+            onClick={() => dispatch(clear())}
           />
         </div>
       )}
