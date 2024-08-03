@@ -5,7 +5,6 @@ import { fetchNews } from "../api/news";
 const News = () => {
   const {
     data: news,
-    isLoading,
     isError,
     error,
   } = useQuery({

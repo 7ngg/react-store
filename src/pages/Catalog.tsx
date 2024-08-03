@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Oval, TailSpin } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { fetchProducts } from "../api/store";
 import Checkbox from "../components/checkbox";
@@ -19,6 +20,7 @@ const Catalog = () => {
     data: products,
     isError,
     error,
+    isLoading,
   } = useQuery({
     queryFn: fetchProducts,
     queryKey: ["products"],
@@ -83,9 +85,15 @@ const Catalog = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-wrap gap-3">
-          {filteredProducts?.map((p) => <ItemCard key={p.id} item={p} />)}
-        </div>
+        {isLoading ? (
+          <div className="flex mt-20 justify-center">
+            <Oval color="black" />
+          </div>
+        ) : (
+          <div className="mt-10 flex flex-wrap gap-3">
+            {filteredProducts?.map((p) => <ItemCard key={p.id} item={p} />)}
+          </div>
+        )}
       </section>
     </div>
   );

@@ -1,22 +1,20 @@
 import { fetchProducts } from "../api/store";
 import Button from "../components/button";
 import ItemCard from "../components/itemCard";
-import { useEffect, useState } from "react";
-import { Product } from "../Entities/product";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/slider.css";
 
 import titleVid from "../assets/title_vid.mp4";
+import { useQuery } from "react-query";
+import { ThreeDots } from "react-loader-spinner";
 
 const Home = () => {
-  const [carouselData, setCarouselData] = useState<Product[]>([]);
-
-  useEffect(() => {
-    console.log("a");
-    fetchProducts().then((r) => setCarouselData(r));
-  }, []);
+  const { data: products, isLoading } = useQuery({
+    queryFn: fetchProducts,
+    queryKey: ["products"],
+  });
 
   const settings = {
     dots: true,
@@ -29,8 +27,8 @@ const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     adaptiveHeight: true,
-    centerMode: true, // Уберите центрирование для мобильных устройств, если необходимо
-    focusOnSelect: false, // Уберите фокусировку на селект, если необходимо
+    centerMode: true,
+    focusOnSelect: true,
     responsive: [
       {
         breakpoint: 1780,
@@ -81,13 +79,17 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="mb-20 w-11/12">
-          <Slider {...settings}>
-            {carouselData.map((i) => (
-              <ItemCard key={i.id} item={i} />
-            ))}
-          </Slider>
-        </div>
+        {isLoading ? (
+          <div className="flex justify-center">
+            <ThreeDots color="black" />
+          </div>
+        ) : (
+          <div className="mb-20 w-11/12">
+            <Slider {...settings}>
+              {products?.map((i) => <ItemCard key={i.id} item={i} />)}
+            </Slider>
+          </div>
+        )}
       </main>
     </>
   );
