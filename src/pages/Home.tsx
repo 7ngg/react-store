@@ -60,23 +60,25 @@ const Home = () => {
   return (
     <>
       <main className="flex flex-col overflow-y-hidden overflow-x-hidden items-center relative">
-        <video autoPlay loop muted>
-          <source src={titleVid} type="video/mp4" />
-        </video>
-        <div className="text-white h-[350px] w-[400px] rounded backdrop-blur bg-slate-950/50 flex flex-col items-center justify-center gap-2 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-[180%]">
-          <h1 className="font-bold text-6xl">Title</h1>
-          <h2 className="text-2xl">Subtitle</h2>
-          <div className="flex gap-2">
-            <Button
-              text="Button 1"
-              className="hover:bg-black hover:text-white"
-              type={undefined}
-            />
-            <Button
-              text="Button 2"
-              className="bg-black text-white hover:bg-transparent hover:text-black"
-              type={undefined}
-            />
+        <div className="relative h-screen w-full">
+          <video className="object-cover w-full h-full" autoPlay loop muted>
+            <source src={titleVid} type="video/mp4" />
+          </video>
+          <div className="text-white w-[90%] max-w-[400px] h-auto p-6 rounded backdrop-blur bg-slate-950/50 flex flex-col items-center justify-center gap-2 absolute left-1/2 -translate-x-1/2 bottom-1/2 ">
+            <h1 className="font-bold text-4xl md:text-6xl">Title</h1>
+            <h2 className="text-xl md:text-2xl">Subtitle</h2>
+            <div className="flex gap-2">
+              <Button
+                text="Button 1"
+                className="hover:bg-black hover:text-white"
+                type={undefined}
+              />
+              <Button
+                text="Button 2"
+                className="bg-black text-white hover:bg-transparent hover:text-black"
+                type={undefined}
+              />
+            </div>
           </div>
         </div>
         {isLoading ? (
