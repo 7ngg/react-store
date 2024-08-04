@@ -1,14 +1,13 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Product } from "../Entities/product";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { clear, removeItem } from "../store/slices/cartSlice";
+import { ICartItem, clear, removeItem } from "../store/slices/cartSlice";
 import Button from "./button";
 import TrashIcon from "./icons/trashIcon";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
 
-  const items = useAppSelector((state) => state.cart.list);
+  let items = useAppSelector((state) => state.cart.list);
 
   return (
     <div className="h-[400px] flex flex-col justify-between">
@@ -19,13 +18,13 @@ const Cart = () => {
       )}
       <div className="flex flex-col gap-2 overflow-scroll overflow-x-hidden">
         {items.map((p, index) => (
-          <div key={p.id} className="cart-item">
+          <div key={p.uuid} className="cart-item">
             <h1>{p.name}</h1>
             <div className="flex items-center gap-4">
               <p className="before:content-['$']">{p.price}</p>
               <button
                 className="outline-none"
-                onClick={() => dispatch(removeItem(index))}
+                onClick={() => dispatch(removeItem(p.uuid))}
               >
                 <TrashIcon color="black" />
               </button>

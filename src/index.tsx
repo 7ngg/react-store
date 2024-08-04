@@ -24,7 +24,7 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <ModalState>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <RouterProvider router={router} />
         </PersistGate>
       </Provider>

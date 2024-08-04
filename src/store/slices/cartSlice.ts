@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../Entities/product";
+import { v4 as uuidv4 } from "uuid";
+
+export interface ICartItem extends Product {
+  uuid: string;
+}
 
 type CartState = {
-  list: Product[];
+  list: ICartItem[];
 };
 
 const initialState: CartState = {
@@ -14,20 +19,19 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<Product>) {
-      state.list.push(action.payload);
+      state.list.push({
+        ...action.payload,
+        uuid: uuidv4(),
+      });
+
+      state.list.forEach((i) => console.log(i));
     },
-    removeItem(state, action: PayloadAction<number>) {
-      const updatedItems = [...state.list]
-      updatedItems.splice(action.payload, 1)
-      state.list = updatedItems;
+    removeItem(state, action: PayloadAction<string>) {
+      state.list = state.list.filter((i) => i.uuid !== action.payload);
     },
     clear(state) {
       state.list = [];
     },
-    writeToStorage(state) {
-      localStorage.removeItem("cart");
-      localStorage.setItem("cart", JSON.stringify(state.list))
-    }
   },
 });
 
