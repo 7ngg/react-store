@@ -8,7 +8,7 @@ export async function fetchProducts(): Promise<Product[]> {
     return products;
   } catch (e) {
     if (e instanceof AxiosError) {
-      console.log("Error fetching news:", e);
+      console.log("Error fetching products:", e);
       throw e;
     }
 

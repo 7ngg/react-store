@@ -1,7 +1,11 @@
 import React from "react";
-import Checkbox from "./checkbox"
+import Checkbox from "./checkbox";
 
-const Sidebar = () => {
+interface ISidebar {
+  max: number;
+}
+
+const Sidebar = (props: ISidebar) => {
   return (
     <aside className="h-[700px] sticky min-w-[200px] min-h-5/6 p-2 border border-stone-400 rounded shadow flex flex-col gap-3">
       <div>
@@ -13,9 +17,13 @@ const Sidebar = () => {
       <div>
         <div className="flex justify-between">
           <p>Label</p>
-          <p className="before:content-['$']">0-100</p>
+          <p className="before:content-['$']">0-{props.max}</p>
         </div>
-        <input type="range" className="w-full outline-none accent-stone-900 h-[3px]" />
+        <input
+          type="range"
+          max={props.max}
+          className="w-full outline-none accent-stone-900 h-[3px]"
+        />
       </div>
       <div>
         <h1 className="mb-2 sidebar-header font-bold">Color</h1>

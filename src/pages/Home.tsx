@@ -9,9 +9,16 @@ import "../styles/slider.css";
 import titleVid from "../assets/title_vid.mp4";
 import { useQuery } from "react-query";
 import { ThreeDots } from "react-loader-spinner";
+import ErrorTable from "../components/errorTable";
+import { AxiosError } from "axios";
 
 const Home = () => {
-  const { data: products, isLoading } = useQuery({
+  const {
+    data: products,
+    isLoading,
+    error,
+    isError,
+  } = useQuery({
     queryFn: fetchProducts,
     queryKey: ["products"],
   });
@@ -81,14 +88,18 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {isLoading ? (
+        {isError ? (
+          <ErrorTable error={error as AxiosError} />
+        ) : isLoading ? (
           <div className="flex justify-center">
             <ThreeDots color="black" />
           </div>
         ) : (
           <div className="mb-20 w-11/12">
             <Slider {...settings}>
-              {products?.map((i) => <ItemCard key={i.id} item={i} />)}
+              {products?.map((i) => (
+                <ItemCard key={i.id} item={i} />
+              ))}
             </Slider>
           </div>
         )}

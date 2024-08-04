@@ -8,6 +8,8 @@ import ItemCard from "../components/itemCard";
 import Sidebar from "../components/sidebar";
 import { Product } from "../Entities/product";
 import { Sorting } from "../Entities/sorting";
+import ErrorTable from "../components/errorTable";
+import { AxiosError } from "axios";
 
 const sorting = ["New", "Price ascending", "Price descending", "Rating"];
 
@@ -15,6 +17,7 @@ const Catalog = () => {
   const [currentSorting, setCurrentSorting] = useState<Sorting>(Sorting.NEW);
   const [search, setSearch] = useState<string>();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>();
+  const [mei, setMei] = useState<number>(0);
 
   const {
     data: products,
@@ -27,14 +30,22 @@ const Catalog = () => {
   });
 
   useEffect(() => {
-    if (search) {
-      setFilteredProducts(
-        products?.filter((p) =>
-          p.name.toLowerCase().includes(search.toLowerCase()),
-        ) || [],
-      );
-    } else {
-      setFilteredProducts(products || []);
+    if (products) {
+      const filtered = search
+        ? products.filter((p) =>
+            p.name.toLowerCase().includes(search.toLowerCase())
+          )
+        : products;
+      setFilteredProducts(filtered);
+
+      if (filtered.length > 0) {
+        const maxPriceProduct = filtered.reduce((prev, current) =>
+          prev.price > current.price ? prev : current
+        );
+        setMei(maxPriceProduct.price);
+      } else {
+        setMei(0);
+      }
     }
   }, [search, products]);
 
@@ -53,7 +64,7 @@ const Catalog = () => {
 
   return (
     <div className="w-11/12 flex justify-between self-center my-10">
-      <Sidebar />
+      <Sidebar max={mei} />
       <section className="w-full px-5">
         <div className="">
           <div className="flex justify-between catalog-header">
@@ -77,7 +88,11 @@ const Catalog = () => {
                 <button
                   onClick={() => sortingHandler(index)}
                   key={index}
-                  className={`${index === currentSorting ? "bg-stone-900 text-white before:content-['✔'] before:pr-2" : ""} outline-none px-4 py-2 border border-black rounded hover:bg-stone-900 hover:text-white duration-150`}
+                  className={`${
+                    index === currentSorting
+                      ? "bg-stone-900 text-white before:content-['✔'] before:pr-2"
+                      : ""
+                  } outline-none px-4 py-2 border border-black rounded hover:bg-stone-900 hover:text-white duration-150`}
                 >
                   {i}
                 </button>
@@ -85,13 +100,22 @@ const Catalog = () => {
             </div>
           </div>
         </div>
+        {isError ? (
+          <div className="flex mt-20 justify-center">
+            <ErrorTable error={error as AxiosError} />
+          </div>
+        ) : (
+          ""
+        )}
         {isLoading ? (
           <div className="flex mt-20 justify-center">
             <Oval color="black" />
           </div>
         ) : (
           <div className="mt-10 flex flex-wrap gap-3">
-            {filteredProducts?.map((p) => <ItemCard key={p.id} item={p} />)}
+            {filteredProducts?.map((p) => (
+              <ItemCard key={p.id} item={p} />
+            ))}
           </div>
         )}
       </section>
