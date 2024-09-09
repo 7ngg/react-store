@@ -90,9 +90,9 @@ const Catalog = () => {
                   key={index}
                   className={`${
                     index === currentSorting
-                      ? "bg-stone-900 text-white before:content-['✔'] before:pr-2"
+                      ? "bg-black text-white before:content-['✔'] before:pr-2"
                       : ""
-                  } outline-none px-4 py-2 border border-black rounded hover:bg-stone-900 hover:text-white duration-150`}
+                  } outline-none px-4 py-2 border border-black rounded hover:bg-black hover:text-white duration-150`}
                 >
                   {i}
                 </button>

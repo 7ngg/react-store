@@ -39,7 +39,7 @@ const footerData = {
 
 const Footer = () => {
   return (
-    <div className="footer p-5 min-h-[300px] w-full bg-stone-900 flex gap-24 justify-evenly sticky bottom 0 flex-wrap">
+    <div className="footer p-5 min-h-[300px] w-full bg-black flex gap-24 justify-evenly sticky bottom-0 flex-wrap">
       <section className="flex flex-col gap-3 footer-item">
         <h6 className="text-2xl font-bold text-white">Follow us</h6>
         <div className="social-icons flex gap-3">

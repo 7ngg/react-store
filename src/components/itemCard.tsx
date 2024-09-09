@@ -24,7 +24,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
         <p className="font-bold before:content-['$']">{item.price}</p>
       </div>
       <button
-        className="px-4 py-2 border border-stone-900 rounded w-full hover:bg-stone-900 hover:text-white active:scale-95 duration-150"
+        className="px-4 py-2 border border-stone-900 rounded w-full hover:bg-black hover:text-white active:scale-95 duration-150"
         onClick={() => dispatch(addItem(item))}
       >
         Add to cart

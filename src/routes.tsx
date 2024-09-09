@@ -6,6 +6,7 @@ import About from "./pages/About";
 import App from "./App";
 import News from "./pages/News";
 import Catalog from "./pages/Catalog";
+import Cart from "./pages/Cart";
 
 const routes = [
   {
@@ -19,6 +20,7 @@ const routes = [
       { path: "/about", element: <About /> },
       { path: "/news", element: <News /> },
       { path: "/catalog", element: <Catalog /> },
+      { path: "/cart", element: <Cart /> },
     ],
   },
 ];

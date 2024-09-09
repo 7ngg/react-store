@@ -28,12 +28,12 @@ const links = [
 
 const Navbar = () => {
   const { modal, open, close, toggle } = useContext(ModalContext);
-  const items = useAppSelector(state => state.cart.list)
+  const items = useAppSelector((state) => state.cart.list);
 
   return (
     <>
       <div className="fixed">
-        <div className="fixed top-0 h-[50px] bg-stone-900 text-white flex w-full items-center justify-evenly z-50">
+        <div className="fixed top-0 h-[50px] bg-black text-white flex w-full items-center justify-evenly z-50">
           <div className="flex gap-1">
             <img
               className="h-8"
@@ -62,6 +62,17 @@ const Navbar = () => {
             <Link to="/signin">
               <ProfileIcon color="white" />
             </Link>
+            <Link to="/cart" className="h-8 relative">
+              <div className="absolute -right-1 top-0 bg-red-500 rounded-full px-1 text-xs">
+                {items.length > 99 ? "99+" : items.length}
+              </div>
+              <img
+                className="h-full w-full cursor-pointer"
+                src="https://i.ibb.co/SKt9XVj/icons8-shopping-cart-64.png"
+                alt="cart-img"
+              />
+            </Link>
+            {/*
             <button className="h-8 relative" onClick={toggle}>
               <div className="absolute -right-1 top-0 bg-red-500 rounded-full px-1 text-xs">
                 {items.length > 99 ? "99+" : items.length}
@@ -72,6 +83,7 @@ const Navbar = () => {
                 alt="cart-img"
               />
             </button>
+            */}
           </div>
         </div>
       </div>

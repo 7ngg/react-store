@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { ICartItem, clear, removeItem } from "../store/slices/cartSlice";
+import { clear, removeItem } from "../store/slices/cartSlice";
 import Button from "./button";
 import TrashIcon from "./icons/trashIcon";
 
-const Cart = () => {
+const CartForm = () => {
   const dispatch = useAppDispatch();
 
   let items = useAppSelector((state) => state.cart.list);
 
   return (
-    <div className="h-[400px] flex flex-col justify-between">
+    <div className="w-9/12 h-full mt-4 flex flex-col justify-between py-4">
       {items.length <= 0 && (
-        <div>
-          <h1>Your cart is empty</h1>
+        <div className="h-full w-full flex items-center justify-center text-2xl font-bold">
+          <h1>Your cart is empty...</h1>
         </div>
       )}
       <div className="flex flex-col gap-2 overflow-scroll overflow-x-hidden">
-        {items.map((p, index) => (
+        {items.map((p) => (
           <div key={p.uuid} className="cart-item">
             <h1>{p.name}</h1>
             <div className="flex items-center gap-4">
@@ -33,7 +32,7 @@ const Cart = () => {
         ))}
       </div>
       {items.length > 0 && (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mb-4">
           <div className="mt-5 flex px-2 justify-between">
             <h1 className="font-bold">Total:</h1>
             <p className="before:content-['$']">
@@ -43,7 +42,7 @@ const Cart = () => {
           <Button
             text="Proceed to checkout"
             type={undefined}
-            className="w-full hover:bg-stone-900 hover:text-white duration-200"
+            className="w-full hover:bg-black hover:text-white duration-200"
             onClick={() => dispatch(clear())}
           />
         </div>
@@ -52,4 +51,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartForm;
