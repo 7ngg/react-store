@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./slices/cartSlice";
+import modalContentReducer from "./slices/modalContentSlice"
 import {
   persistStore,
   persistReducer,
@@ -14,11 +15,13 @@ import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
+  modalContent: modalContentReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["modalContent"]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

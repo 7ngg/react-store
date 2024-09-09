@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import { ModalContext } from "../contexts/modalContext";
 import Modal from "./modal";
 import { useAppSelector } from "../hooks";
+import Auth from "./auth";
 
 const links = [
   {
@@ -59,9 +60,9 @@ const Navbar = () => {
             <Link to="">
               <SettingsIcon color="white" />
             </Link>
-            <Link to="/signin">
+            <button onClick={toggle}>
               <ProfileIcon color="white" />
-            </Link>
+            </button>
             <Link to="/cart" className="h-8 relative">
               <div className="absolute -right-1 top-0 bg-red-500 rounded-full px-1 text-xs">
                 {items.length > 99 ? "99+" : items.length}
@@ -72,24 +73,12 @@ const Navbar = () => {
                 alt="cart-img"
               />
             </Link>
-            {/*
-            <button className="h-8 relative" onClick={toggle}>
-              <div className="absolute -right-1 top-0 bg-red-500 rounded-full px-1 text-xs">
-                {items.length > 99 ? "99+" : items.length}
-              </div>
-              <img
-                className="h-full w-full cursor-pointer"
-                src="https://i.ibb.co/SKt9XVj/icons8-shopping-cart-64.png"
-                alt="cart-img"
-              />
-            </button>
-            */}
           </div>
         </div>
       </div>
       {modal && (
-        <Modal onClose={close} title="Cart">
-          <Cart />
+        <Modal onClose={close} title="">
+          <Auth />
         </Modal>
       )}
     </>

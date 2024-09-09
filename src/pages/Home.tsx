@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/slider.css";
 
-import titleVid from "../assets/title_vid.mp4";
+import titleVid from "../assets/intro.mp4";
 import { useQuery } from "react-query";
 import { ThreeDots } from "react-loader-spinner";
 import ErrorTable from "../components/errorTable";

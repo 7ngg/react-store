@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
 import Input from "./input";
 import Button from "./button";
+import ArrowBackIcon from "./icons/arrowBack";
+import { useDispatch } from "react-redux";
+import { setContent } from "../store/slices/modalContentSlice";
+import SignInForm from "./signInForm";
 
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
+  const dispatch = useDispatch();
+
   return (
-    <form className="h-[500px] shadow rounded bg-white border border-black font-bold flex gap-2">
-      <div className="flex flex-col justify-between p-3">
-        <h1 className="text-2xl mb-4">Sign Up</h1>
+    <form className="h-full flex flex-col items-center gap-2 p-4 justify-between">
+      <div>
+        <div className="text-2xl mb-4 flex justify-between h-12">
+          <h1 className="text-2xl mb-4">Sign Up</h1>
+          <button
+            className="h-4"
+            onClick={() => dispatch(setContent(SignInForm))}
+          >
+            <span>&#8678;</span>
+          </button>
+        </div>
         <div className="flex flex-col gap-2">
           <div>
             <h3>Username</h3>
@@ -25,15 +39,12 @@ const SignUpForm = () => {
             <Input type="password" />
           </div>
         </div>
-        <div className="self-center">
-          <Button text="Sign up" type="submit" />
-        </div>
       </div>
-      <div>
-        <img
-          className="h-full rounded-e"
-          src="https://i.imgur.com/q56HAS7.jpeg"
-          alt=""
+      <div className="self-center">
+        <Button
+          text="Sign up"
+          type="submit"
+          className="hover:scale-105 duration-150"
         />
       </div>
     </form>
